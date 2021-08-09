@@ -3,6 +3,11 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import './fonts/HelveticaNeue.ttc';
+import './fonts/HelveticaNeue-Bold.ttf';
+import './fonts/HelveticaNeue-Light.ttf';
+import './fonts/HelveticaNeue-Medium.ttf';
+import './fonts/HelveticaNeue-Thin.ttf';
 
 ReactDOM.render(
   <React.StrictMode>
