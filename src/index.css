@@ -130,7 +130,7 @@ span {
 /* ITEM COUNT */
 .shop-card {
   width: 20%;
-  margin: 2rem 11rem;
+  margin: 2rem 1rem;
   padding: 2rem;
   background-color: #fff;
   -webkit-box-shadow: 0px 0px 12px 0px rgba(0,0,0,0.1);
@@ -196,4 +196,10 @@ button:hover {
 .add-to-cart:hover {
   background-color: #000;
   color: #f5f5f7;
+}
+
+/* ITEM LIST CONTAINER */
+.item-list-container {
+  display: flex;
+  margin-left: 7rem;
 }
