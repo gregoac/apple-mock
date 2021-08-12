@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch} from '@fortawesome/free-solid-svg-icons';
 import { faApple } from '@fortawesome/free-brands-svg-icons';
 import CartWidget from './CartWidget';
+import {Link} from 'react-router-dom';
 
 class NavBar extends React.Component {
     render(){
@@ -11,7 +12,7 @@ class NavBar extends React.Component {
             <nav>
                 <div className="menu">
                     <ul>
-                        <li><FontAwesomeIcon icon={faApple} /></li>
+                        <li><Link to={`/home`}><FontAwesomeIcon icon={faApple} /></Link></li>
                         <li><p>Mac</p></li>
                         <li><p>iPad</p></li>
                         <li><p>iPhone</p></li>

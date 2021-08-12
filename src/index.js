@@ -8,10 +8,11 @@ import './fonts/HelveticaNeue-Bold.ttf';
 import './fonts/HelveticaNeue-Light.ttf';
 import './fonts/HelveticaNeue-Medium.ttf';
 import './fonts/HelveticaNeue-Thin.ttf';
+import Router from './router/Router.js';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <App></App>
   </React.StrictMode>,
   document.getElementById('root')
 );

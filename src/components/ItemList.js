@@ -6,7 +6,7 @@ function ItemList({items}){
     return (
     <div className="item-list-container">
         {items.map((item) => (
-            <Item item={item}></Item>
+            <Item {...item}></Item>
         ))}
     </div>
     )
