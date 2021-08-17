@@ -27,7 +27,7 @@ function ItemDetailContainer(){
 
     return (
         products.map((product) => (
-            <ItemDetail {...product}></ItemDetail>
+            <ItemDetail key={product.id} {...product}></ItemDetail>
         ))
 
     )
