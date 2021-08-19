@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
-import iPhonePicture from '../assets/iphone12producto.png';
 import ItemDetail from './ItemDetail';
+import data from '../extras/dataArray';
     
 function getItems(data){
     return new Promise((resolve) => {
@@ -12,10 +12,6 @@ function getItems(data){
 
 function ItemDetailContainer(){
 
-    const data = [
-        {id: '1', title: 'iPhone 12 Pro', price: '$699', pictureUrl: iPhonePicture}
-    ]
-
     const [products, setProducts] = useState([]);
     
     useEffect(() => {
@@ -23,15 +19,11 @@ function ItemDetailContainer(){
         .then(setProducts)
     }, []);
 
-    console.log(...products);
-
     return (
         products.map((product) => (
             <ItemDetail key={product.id} {...product}></ItemDetail>
         ))
-
     )
-    
 
 
 

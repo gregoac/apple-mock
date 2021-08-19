@@ -4,31 +4,29 @@ import { faSearch} from '@fortawesome/free-solid-svg-icons';
 import { faApple } from '@fortawesome/free-brands-svg-icons';
 import CartWidget from './CartWidget';
 import {Link} from 'react-router-dom';
+import menuItems from '../extras/menu';
 
-class NavBar extends React.Component {
-    render(){
-        return (
-            
-            <nav>
-                <div className="menu">
-                    <ul>
-                        <li><Link to={`/home`}><FontAwesomeIcon icon={faApple} /></Link></li>
-                        <li><p>Mac</p></li>
-                        <li><p>iPad</p></li>
-                        <li><p>iPhone</p></li>
-                        <li><p>Watch</p></li>
-                        <li><p>TV</p></li>
-                        <li><p>Music</p></li>
-                        <li><p>Soporte</p></li>
-                        <li><p>Dónde comprar</p></li>
-                        <li><FontAwesomeIcon icon={faSearch} /></li>
-                        <li><CartWidget></CartWidget></li>
-                    </ul>
-                </div>
-            </nav>
+function NavBar() {
+    
+    return (
         
-        )
-    }
+        <nav>
+            <div className="menu">
+                <ul>
+                    <li><Link to={`/`}><FontAwesomeIcon icon={faApple} /></Link></li>
+                    {menuItems.map((item) => (
+                        <Link key={item} to={`/category/${item}`}>
+                            <li><p>{item}</p></li>
+                        </Link>
+                    ))}
+                    <li><FontAwesomeIcon icon={faSearch} /></li>
+                    <li><CartWidget></CartWidget></li>
+                </ul>
+            </div>
+        </nav>
+    
+    )
 }
+
 
 export default NavBar;

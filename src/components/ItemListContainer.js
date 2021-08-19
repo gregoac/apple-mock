@@ -1,23 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import iPhonePhoto from '../assets/iphone12.png';
 import ItemList from './ItemList';
-import iPhonePicture from '../assets/iphone12producto.png';
+import mockRequest from '../extras/mockRequest';
+import {useParams} from 'react-router-dom';
+import NavBar from './NavBar';
 
 function ItemListContainer(props) {
 
-    const data = [
-        {id: '1', title: 'iPhone 12 Pro', price: '$699', pictureUrl: iPhonePicture},
-        {id: '2', title: 'iPhone 11 Pro', price: '$799', pictureUrl: iPhonePicture},
-        {id: '3', title: 'iPhone X Pro', price: '$899', pictureUrl: iPhonePicture}
-    ]
+    const {categoryId} = useParams()
+    console.log(categoryId)
 
-    function mockRequest(){
-        return new Promise((resolve, reject) => {
-            setTimeout(() => {
-                resolve(data)
-            }, 3000)
-        })
-    }
+    // const { categoryId } = useParams();
+
+    // console.log(categoryId);
 
     const [products, setProducts] = useState([]);
 
@@ -29,6 +24,7 @@ function ItemListContainer(props) {
   
         return(
             <>
+            <NavBar></NavBar>
             <header className="header">
                 <div className="greetings">
                     <h1>{props.greetings}</h1>
