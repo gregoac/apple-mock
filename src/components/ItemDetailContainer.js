@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import ItemDetail from './ItemDetail';
 import data from '../extras/dataArray';
+import { useParams } from 'react-router-dom';
     
 function getItems(data){
     return new Promise((resolve) => {
@@ -12,17 +13,27 @@ function getItems(data){
 
 function ItemDetailContainer(){
 
+    const {itemId} = useParams();
+
     const [products, setProducts] = useState([]);
     
     useEffect(() => {
         getItems(data)
-        .then(setProducts)
-    }, []);
+        .then(() => {
+            if(itemId === '1'){
+                setProducts(data.map((product) => (
+                    <ItemDetail key={product.id} {...product}></ItemDetail>
+                )))
+            } else {
+                setProducts('')
+            }
+        })
+    }, [itemId]);
 
     return (
-        products.map((product) => (
-            <ItemDetail key={product.id} {...product}></ItemDetail>
-        ))
+        <>
+            {products}
+        </>
     )
 
 

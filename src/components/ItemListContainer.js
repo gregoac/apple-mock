@@ -2,17 +2,25 @@ import React, { useState, useEffect } from 'react';
 import iPhonePhoto from '../assets/iphone12.png';
 import ItemList from './ItemList';
 import mockRequest from '../extras/mockRequest';
-// import {useParams} from 'react-router-dom';
+import {useParams} from 'react-router-dom';
 import NavBar from './NavBar';
 
 function ItemListContainer(props) {
 
     const [products, setProducts] = useState([]);
 
+    const { categoryId } = useParams(); 
+
     useEffect(() => {
         mockRequest()
-        .then(setProducts)
-    }, []);
+        .then((data) => {
+			if(categoryId === 'iPhone') {
+				setProducts(<ItemList items={data}></ItemList>)
+			} else {
+				setProducts('');
+			}
+		})
+    }, [categoryId]);
 
   
         return(
@@ -26,7 +34,7 @@ function ItemListContainer(props) {
                 </div>
                 <img src={iPhonePhoto} alt="iphones-img"></img>
             </header>
-            <ItemList items={products}></ItemList>
+            {products}
             </>
         )
     

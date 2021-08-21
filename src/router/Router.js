@@ -16,7 +16,7 @@ function Router(){
                 <Route path="/category/:categoryId">
                 <ItemListContainer greetings="iPhone 12" subtitle="Blast fast past." span="From $29.12/mo. for 24 mo. or $699 before trade-in"></ItemListContainer>
                 </Route>
-                <Route path="/item/:id">
+                <Route path="/item/:itemId">
                     <NavBar></NavBar>
                     <ItemDetailContainer></ItemDetailContainer>
                 </Route>

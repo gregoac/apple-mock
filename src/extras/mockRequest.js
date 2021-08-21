@@ -4,7 +4,7 @@ function mockRequest(){
     return new Promise((resolve) => {
         setTimeout(() => {
             resolve(dataArray)
-        }, 3000)
+        }, 2000)
     })
 }
 
