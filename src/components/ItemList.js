@@ -1,29 +1,26 @@
 import React from 'react';
 import Item from './Item';
 import {useParams} from 'react-router-dom';
+import {useEffect, useState} from 'react';
 
 function ItemList({items}){
 
-    const params = useParams()
-    console.log({params})
+    const {categoryId} = useParams();
 
+    const [category, setCategory] = useState([]);
 
-    // const categoryActual = categoryId.location.pathname;
+    useEffect(() => {
+        if(categoryId === "iPhone"){
+            setCategory(items.map((item) => (<Item key={item.id} {...item}></Item>)))
+        } else {
+            setCategory('')
+        }
 
-    // const [category, setCategory] = useState([]);
-
-    // useEffect(() => {
-    //     if(categoryId === "/category/iPhone"){
-    //         setCategory(items.map((item) => (<Item key={item.id} {...item}></Item>)))
-    //     } else {
-    //         setCategory(<div></div>)
-    //     }
-
-    // }, [categoryId])
+    }, [categoryId])
 
     return (
     <div className="item-list-container">
-        {items.map((item) => (<Item key={item.id} {...item}></Item>))}
+        {category}
     </div>
     )
 }

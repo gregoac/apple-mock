@@ -2,17 +2,10 @@ import React, { useState, useEffect } from 'react';
 import iPhonePhoto from '../assets/iphone12.png';
 import ItemList from './ItemList';
 import mockRequest from '../extras/mockRequest';
-import {useParams} from 'react-router-dom';
+// import {useParams} from 'react-router-dom';
 import NavBar from './NavBar';
 
 function ItemListContainer(props) {
-
-    const {categoryId} = useParams()
-    console.log(categoryId)
-
-    // const { categoryId } = useParams();
-
-    // console.log(categoryId);
 
     const [products, setProducts] = useState([]);
 

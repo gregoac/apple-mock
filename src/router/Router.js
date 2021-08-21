@@ -9,12 +9,12 @@ function Router(){
     return(
         <BrowserRouter>
             <Switch>
-                <Route path="/">
-                    <NavBar></NavBar>
+                <Route path="/" exact>
                     <ItemListContainer greetings="iPhone 12" subtitle="Blast fast past." span="From $29.12/mo. for 24 mo. or $699 before trade-in"></ItemListContainer>
                     <ItemDetailContainer></ItemDetailContainer>
                 </Route>
-                <Route path="/category/:categoryId" component={ItemListContainer}>
+                <Route path="/category/:categoryId">
+                <ItemListContainer greetings="iPhone 12" subtitle="Blast fast past." span="From $29.12/mo. for 24 mo. or $699 before trade-in"></ItemListContainer>
                 </Route>
                 <Route path="/item/:id">
                     <NavBar></NavBar>
