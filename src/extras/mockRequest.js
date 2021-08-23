@@ -1,9 +1,9 @@
-import dataArray from './dataArrayList';
+import productMocks from './productMocks';
 
 function mockRequest(){
     return new Promise((resolve) => {
         setTimeout(() => {
-            resolve(dataArray)
+            resolve(productMocks)
         }, 2000)
     })
 }

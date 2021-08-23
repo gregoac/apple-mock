@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import ItemDetail from './ItemDetail';
-import data from '../extras/dataArray';
+import productMock from '../extras/productMock';
 import { useParams } from 'react-router-dom';
     
 function getItems(data){
@@ -15,24 +15,22 @@ function ItemDetailContainer(){
 
     const {itemId} = useParams();
 
-    const [products, setProducts] = useState([]);
+    const [products, setProducts] = useState(null);
     
     useEffect(() => {
-        getItems(data)
+        getItems(productMock)
         .then(() => {
             if(itemId === '1'){
-                setProducts(data.map((product) => (
-                    <ItemDetail key={product.id} {...product}></ItemDetail>
-                )))
+                setProducts(productMock)
             } else {
-                setProducts('')
+                setProducts(null)
             }
         })
     }, [itemId]);
 
     return (
         <>
-            {products}
+            {products  && <ItemDetail {...products} />}
         </>
     )
 
