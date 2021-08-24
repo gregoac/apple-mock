@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import ItemCount from './ItemCount';
+import {Link} from 'react-router-dom';
 
 function ItemDetail({id, title, price, pictureUrl}){
 
@@ -28,8 +29,7 @@ function ItemDetail({id, title, price, pictureUrl}){
             <div className="info-container">
                 <span>From $29.12/mo. for 24 mo. <br></br> or {price} before trade-in</span>
             </div>
-        <ItemCount stock="10" initial="0" onAdd={onAdd}/>
-        {carrito >= 1 ? <button className="add-to-cart" style={{marginTop: 0.5 + 'rem'}}>TERMINAR MI COMPRA</button> : ''}
+        {carrito >= 1 ? <Link to='/cart'><button className="add-to-cart" style={{marginTop: 0.5 + 'rem'}}>TERMINAR MI COMPRA</button></Link> : <ItemCount stock="10" initial="0" onAdd={onAdd}/>}
         </div>
     );
 

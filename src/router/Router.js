@@ -4,6 +4,7 @@ import ItemListContainer from '../components/ItemListContainer';
 import NotFound from '../components/NotFound';
 import NavBar from '../components/NavBar';
 import ItemDetailContainer from '../components/ItemDetailContainer';
+import Cart from '../components/Cart';
 
 function Router(){
     return(
@@ -19,6 +20,9 @@ function Router(){
                 <Route path="/item/:itemId">
                     <NavBar></NavBar>
                     <ItemDetailContainer></ItemDetailContainer>
+                </Route>
+                <Route path="/cart">
+                    <Cart/>
                 </Route>
                 <Route path="*" component={NotFound}></Route>
             </Switch>
