@@ -24,7 +24,7 @@ class ItemCount extends React.Component {
                 <input type="number" readOnly value={this.state.contador}></input>
                 <button><FontAwesomeIcon icon={faPlus} onClick={this.onSumarNumero.bind(this)} /></button>
             </div>
-            <button className="add-to-cart" onClick={this.props.onAdd.bind(this)}>AÑADIR AL CARRITO</button>
+            <button className="add-to-cart" onClick={() => this.props.onAdd(this.state.contador)}>AÑADIR AL CARRITO</button>
         </>
         )
     }

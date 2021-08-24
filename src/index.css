@@ -223,13 +223,12 @@ button:hover {
 .popup {
   background-color: #fff;
   position: absolute;
-  display: flex;
   left: 0;
   right: 0;
   margin: 4rem auto;
+  text-align: center;
   z-index: 999;
   width: 30%;
-  justify-content: space-around;
 }
 
 .popup img {
