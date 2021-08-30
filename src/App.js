@@ -1,14 +1,18 @@
 import './App.css';
-
 import Router from './router/Router';
+import { CartProvider } from './context/CartContext';
+import { useState } from 'react';
 
 
 function App() {
+
+  const [cart, setCart] = useState({});
+
   return (
-    <div>
-      <Router></Router>
-    </div>
+      <CartProvider value={cart}>
+        <Router></Router>
+      </CartProvider>
   );
 }
-
+  
 export default App;
