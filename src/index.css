@@ -306,3 +306,23 @@ h4 {
   width: 80%;
   float: right;
 }
+
+.cart-widget {
+  position: fixed;
+  top: 3rem;
+  right: 10rem;
+  padding: 1rem 2rem;
+  font-size: 14px;
+  color: #6e6e73;
+  font-family: 'HelveticaNeue-Light';
+}
+
+.item-container-widget {
+  margin: 0!important;
+  width: 100%!important;
+}
+
+.item-container-widget h2 {
+  margin: 0.5rem 0;
+  font-size: 16px;
+}

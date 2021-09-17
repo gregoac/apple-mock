@@ -20,6 +20,10 @@ function ItemListContainer(props) {
 				setProducts('');
 			}
 		})
+
+        return () => {
+            setProducts([])
+        }
     }, [categoryId]);
 
   

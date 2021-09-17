@@ -26,6 +26,9 @@ function ItemDetailContainer(){
                 setProducts(null)
             }
         })
+        return () => {
+            setProducts([])
+        }
     }, [itemId]);
 
     return (
