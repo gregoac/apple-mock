@@ -31,7 +31,7 @@ function NavBar() {
                         ))}
                         <li><FontAwesomeIcon icon={faSearch} /></li>
                         {/* <Link to={`/cart`}> */}
-                            <li onClick={!hover ? () => {onHover()} : () => {offHover()}}><FontAwesomeIcon icon={faShoppingBag} /></li>
+                            <li key='cart-icon' onClick={!hover ? () => {onHover()} : () => {offHover()}}><FontAwesomeIcon icon={faShoppingBag} /></li>
                         {/* </Link> */}
                         {hover && <CartWidget/>}
                     </ul>
