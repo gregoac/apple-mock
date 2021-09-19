@@ -1,29 +1,72 @@
 import React, { useState, useEffect } from 'react';
 import iPhonePhoto from '../assets/iphone12.png';
 import ItemList from './ItemList';
-import mockRequest from '../extras/mockRequest';
+// import mockRequest from '../extras/mockRequest';
 import {useParams} from 'react-router-dom';
 import NavBar from './NavBar';
+import { getFirestore } from "../firebase";
 
 function ItemListContainer(props) {
 
-    const [products, setProducts] = useState([]);
+    // const [products, setProducts] = useState([]);
+    const [iphones, setIphones] = useState([]);
+
+    // const [prueba, setPrueba] = useState([]);
 
     const { categoryId } = useParams(); 
 
     useEffect(() => {
-        mockRequest()
-        .then((data) => {
-			if(categoryId === 'iPhone') {
-				setProducts(<ItemList items={data}></ItemList>)
-			} else {
-				setProducts('');
-			}
-		})
+        // mockRequest()
+        // .then((data) => {
+		// 	if(categoryId === 'iPhone') {
+		// 		setProducts(<ItemList items={data}></ItemList>)
+		// 	} else {
+		// 		setProducts('');
+		// 	}
+		// })
+
+        ////////////////////
+
+        const db = getFirestore();
+        const itemCollection = db.collection("items");
+        const iphones = itemCollection.where("categoryId", "==", "iPhone");
+
+        // itemCollection
+        // .get()
+        // .then((querySnapshot) => {
+        //     if (querySnapshot.size === 0) {
+        //     console.log("No items");
+        //     }
+        //     setProducts(
+        //     querySnapshot.docs.map((document) => ({
+        //         id: document.id,
+        //         ...document.data(),
+        //     }))
+        //     );
+        // })
+        // .catch((error) => console.log(error))
+
+        if(categoryId == 'iPhone'){
+
+            iphones
+            .get()
+            .then((querySnapshot) =>
+                setIphones(
+                querySnapshot.docs.map((document) =>  ({
+                    id: document.id,
+                    ...document.data()
+                }))
+                )
+            )
+            .catch((error) => console.log("error", error));
+
+        }
 
         return () => {
-            setProducts([])
+            setIphones([])
         }
+
+        
     }, [categoryId]);
 
   
@@ -38,7 +81,7 @@ function ItemListContainer(props) {
                 </div>
                 <img src={iPhonePhoto} alt="iphones-img"></img>
             </header>
-            {products}
+            {iphones && <ItemList items={iphones}></ItemList>}
             </>
         )
     

@@ -27,7 +27,7 @@ function CartWidget() {
                         </div>
                         <h2>{item.quantity}</h2>
                         <div>
-                            <h2 style={{textAlign: 'right'}}>${item.item.price*item.quantity}</h2>
+                            <h2 style={{textAlign: 'right'}}>${item.item.price*item.quantity}.00</h2>
                             <button onClick={() => (removeItem(item.item.id))}>Remove</button>
                         </div>
                     </div>
