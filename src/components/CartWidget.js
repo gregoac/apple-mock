@@ -1,13 +1,23 @@
 import React, {useContext} from 'react';
 // import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 // import { faShoppingBag } from '@fortawesome/free-solid-svg-icons';
-import iPhonePicture from '../assets/iphone12producto.png';
+// import iPhonePicture from '../assets/iphone12producto.png';
 import { CartContext } from '../context/CartContext';
 import { Link } from 'react-router-dom';
 
 function CartWidget() {
 
     const {items, removeItem} = useContext(CartContext)
+
+    // items.map(item => {
+    //     var imgTitle = item.item.pictureUrl;
+    //     var path = require("../assets/"+imgTitle);
+    //     console.log(path);
+    //     var pictureUrl = path.default;
+    //     item.item.pictureUrl = pictureUrl;
+    //     return item;
+    //     // return item.item.pictureUrl = pictureUrl;
+    // })
 
     return (
         <>
@@ -17,9 +27,9 @@ function CartWidget() {
 
             {items.length > 0 ? items.map(item => {
                 return(
-                <div key={item.item.id} style={{marginTop: '0.7rem', padding: '0 0 0.7rem 0', borderBottom: '1px solid #d2d2d7', width: '21rem'}} className="item-cart">
+                <div key={item.item.id} style={{marginTop: '1rem', padding: '0 0 1rem 0', borderBottom: '1px solid #d2d2d7', width: '21rem'}} className="item-cart">
                     <div style={{width: '16%', display: 'flex', alignItems: 'center'}}>
-                        <img src={iPhonePicture} style={{width: '100%'}} alt="iphone-pic"></img>
+                        <img src={item.item.pictureUrl} style={{width: '100%'}} alt="iphone-pic"></img>
                     </div>
                     <div className='info-card'>
                         <div className='info'>
@@ -40,7 +50,7 @@ function CartWidget() {
             }
             {items.length > 0 && 
             <Link to={`/cart`}>
-                <button className='checkout-button' style={{width: '60%', display: 'block', margin: '0 auto', fontSize: '16px', marginTop: '0.7rem'}}>Go to Check Out</button>
+                <button className='checkout-button' style={{width: '60%', display: 'block', margin: '0 auto', fontSize: '16px', marginTop: '1rem'}}>Go to Check Out</button>
             </Link>
             }
             

@@ -46,7 +46,7 @@ function ItemListContainer(props) {
         // })
         // .catch((error) => console.log(error))
 
-        if(categoryId == 'iPhone'){
+        if(categoryId === 'iPhone'){
 
             iphones
             .get()

@@ -1,15 +1,15 @@
 import './App.css';
 import Router from './router/Router';
 import { CartProvider } from './context/CartContext';
-import { useState } from 'react';
+// import { useState } from 'react';
 
 
 function App() {
 
-  const [cart, setCart] = useState({});
+  // const [cart, setCart] = useState({});
 
   return (
-      <CartProvider value={cart}>
+      <CartProvider>
         <Router></Router>
       </CartProvider>
   );
