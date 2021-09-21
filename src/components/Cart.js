@@ -4,6 +4,7 @@ import NavBar from './NavBar';
 import { CartContext } from '../context/CartContext';
 import { Link } from 'react-router-dom';
 import { getFirestore } from '../firebase';
+import firebase from '@firebase/app-compat';
 
 function Cart(){
 
@@ -46,6 +47,7 @@ function Cart(){
             email: "gregoacosta7@gmail.com",
           },
           items: newItems,
+          date: firebase.firestore.Timestamp.fromDate(new Date()),
           total,
         };
         const db = getFirestore();

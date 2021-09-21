@@ -9,7 +9,7 @@ import { getFirestore } from "../firebase";
 function ItemListContainer(props) {
 
     // const [products, setProducts] = useState([]);
-    const [iphones, setIphones] = useState([]);
+    const [products, setProducts] = useState([]);
 
     // const [prueba, setPrueba] = useState([]);
 
@@ -29,7 +29,7 @@ function ItemListContainer(props) {
 
         const db = getFirestore();
         const itemCollection = db.collection("items");
-        const iphones = itemCollection.where("categoryId", "==", "iPhone");
+        
 
         // itemCollection
         // .get()
@@ -46,12 +46,14 @@ function ItemListContainer(props) {
         // })
         // .catch((error) => console.log(error))
 
-        if(categoryId === 'iPhone'){
+        if(categoryId){
 
-            iphones
+            const products = itemCollection.where("categoryId", "==", categoryId);
+
+            products
             .get()
             .then((querySnapshot) =>
-                setIphones(
+                setProducts(
                 querySnapshot.docs.map((document) =>  ({
                     id: document.id,
                     ...document.data()
@@ -62,8 +64,10 @@ function ItemListContainer(props) {
 
         }
 
+            
+
         return () => {
-            setIphones([])
+            setProducts([])
         }
 
         
@@ -81,7 +85,7 @@ function ItemListContainer(props) {
                 </div>
                 <img src={iPhonePhoto} alt="iphones-img"></img>
             </header>
-            {iphones && <ItemList items={iphones}></ItemList>}
+            {products && <ItemList items={products}></ItemList>}
             </>
         )
     
