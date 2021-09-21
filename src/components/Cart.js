@@ -5,12 +5,24 @@ import { CartContext } from '../context/CartContext';
 import { Link } from 'react-router-dom';
 import { getFirestore } from '../firebase';
 import firebase from '@firebase/app-compat';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTimes} from '@fortawesome/free-solid-svg-icons';
 
 function Cart(){
 
     const {items, removeItem, clear} = useContext(CartContext)
     const [total, setTotal] = useState(0);
     const [orderCreatedId, setOrderCreatedId] = useState(null);
+
+    const [hover, setHover] = useState(false);
+
+    const onHover = () => {
+        setHover(true);
+    }
+
+    const offHover = () => {
+        setHover(false);
+    }
 
     // var total = 0;
 
@@ -32,6 +44,12 @@ function Cart(){
       }, [items]);
 
       const handleFinishPurchase = () => {
+
+        var email = document.getElementById("email");
+        var nombre = document.getElementById("nombre");
+        var apellido = document.getElementById("apellido");
+        var telefono = document.getElementById("telefono");
+
         const newItems = items.map(({ item, quantity }) => ({
           item: {
             id: item.id,
@@ -42,9 +60,10 @@ function Cart(){
         }));
         const newOrder = {
           buyer: {
-            name: "Gregorio Acosta",
-            phone: "+54 3442466438",
-            email: "gregoacosta7@gmail.com",
+            name: nombre.value,
+            lastName: apellido.value,
+            phone: telefono.value,
+            email: email.value,
           },
           items: newItems,
           date: firebase.firestore.Timestamp.fromDate(new Date()),
@@ -71,12 +90,37 @@ function Cart(){
           })
           .catch((error) => console.log(error))
           .finally(() => {
+              setHover(false);
               clear();
           })
         //   .finally(() => {
         //       setIte
         //   })
       };
+
+      function verifyEmail(){
+        var userEmail = document.getElementById("email");
+        var emailValue = userEmail.value;
+        var userEmailVerification = document.getElementById("email-verification");
+        var emailVerificationValue = userEmailVerification.value;
+        var alertaTexto = document.createTextNode("Los correos no coinciden");
+        var error = document.getElementById("verification-control");
+        var finCompraButton = document.getElementById("finalizar-compra-button");
+
+        if(emailValue !== emailVerificationValue){
+
+          error.innerText = '';
+          error.append(alertaTexto);
+          finCompraButton.classList.add("disabled")
+          finCompraButton.disabled = true;
+    
+        } 
+        else {
+          error.innerText = '';
+          finCompraButton.classList.remove("disabled")
+          finCompraButton.disabled = false;
+        }
+      }
 
     return(
     < div className="cart-container">
@@ -104,7 +148,7 @@ function Cart(){
                 <>
                 <h1>Your bag total is ${total}.00.</h1>
                 <span>Free delivery and free returns.</span>
-                <button onClick={handleFinishPurchase} className='checkout-button' style={{display: 'block'}}>Check Out</button>
+                <button onClick={!hover ? () => {onHover()} : () => {offHover()}} className='checkout-button' style={{display: 'block'}}>Check Out</button>
                 </>
         :  
                 orderCreatedId ? 
@@ -148,6 +192,40 @@ function Cart(){
                     )
             })}
             </div>
+            {hover &&
+
+            <div style={{display: 'flex', justifyContent: 'space-around'}}>
+              <div className="form-checkout">
+              <FontAwesomeIcon onClick={() => setHover(false)} style={{float: 'right', fontSize: '14px', display:'block'}} icon={faTimes}/>
+              <h4 style={{margin: '1.5rem 0 1.5rem 0'}}>Ingresa tus datos para finalizar la compra.</h4>
+                <div className="form-control">
+                  <label htmlFor="nombre">Nombre*</label>
+                  <input type="text" name="nombre" id="nombre" required/>
+                </div>
+                <div className="form-control">
+                  <label htmlFor="apellido">Apellido*</label>
+                  <input type="text" name="apellido" id="apellido" required/>
+                </div>
+                <div className="form-control">
+                  <label htmlFor="telefono">Teléfono*</label>
+                  <input type="text" name="telefono" id="telefono" required/>
+                </div>
+                <div className="form-control">
+                  <label htmlFor="email">E-mail*</label>
+                  <input onKeyUp={verifyEmail} type="email" name="email" id="email" required/>
+                </div>
+                <div className="form-control">
+                  <label htmlFor="email-verification">E-mail verification*</label>
+                  <input onKeyUp={verifyEmail} type="email" name="email-verfication" id="email-verification" required/>
+                  <div id="verification-control">
+                  </div>
+                </div>
+                <button onClick={handleFinishPurchase} className='checkout-button' id="finalizar-compra-button" style={{marginTop: '1rem'}}>Finalizar compra</button>
+              </div>
+            </div>
+            
+            }
+            
     </div>
     )
 }
