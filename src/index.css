@@ -336,6 +336,7 @@ h4 {
   border-radius: 18px;
   border: 1px solid #d2d2d7;
   text-align: left;
+  min-width: 22rem;
   box-shadow: 0px 0px 94px 0px rgba(0,0,0,0.35);
 -webkit-box-shadow: 0px 0px 94px 0px rgba(0,0,0,0.35);
 -moz-box-shadow: 0px 0px 94px 0px rgba(0,0,0,0.35);
@@ -373,4 +374,8 @@ h4 {
 .disabled {
   background-color: rgba( 0, 0, 0, 0.08 );
   color: white;
+}
+
+.form-checkout button {
+  width: 100%!important;
 }
