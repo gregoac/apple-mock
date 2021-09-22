@@ -46,7 +46,7 @@ function CartWidget() {
                 )
 
             }):
-                <p>Yor Bag is empty.</p>
+                <p>Your Bag is empty.</p>
             }
             {items.length > 0 && 
             <Link to={`/cart`}>
